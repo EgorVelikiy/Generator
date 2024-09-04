@@ -71,11 +71,12 @@ test('Проверка сортировки', () => {
 	const sorted_keys = ["attack", "level"];
 
 	const result = [
-		{ key: 'attack', value: 80 },
-		{ key: 'level', value: 2 },
-		{ key: 'defence', value: 40 },
-		{ key: 'health', value: 10 },
-		{ key: 'name', value: 'мечник' }
+		{ key: 'attack', value: 25 },
+		{ key: 'level', value: 1 },
+		{ key: 'defence', value: 25 },
+		{ key: 'health', value: 100 },
+		{ key: 'name', value: 'Егор' },
+		{ key: 'type', value: 'Bowman'}
 	]
 	
 	expect(obj.sorting(sorted_keys)).toEqual(result);
@@ -84,7 +85,7 @@ test('Проверка сортировки', () => {
 
 test('Проверка несуществующего ключа', () => {
 	const obj = new Bowman('Егор');
-	const sorted_keys = ["age", "level"];
+	const sorted_keys = ["class", "level"];
 
 	expect(() => obj.sorting(sorted_keys)).toThrow()
 });

@@ -48,6 +48,9 @@ export default class Character {
 
 		for (let i = sorted_keys.length - 1; i > -1; i--) {
 			let ind = result.findIndex(item => item.key === sorted_keys[i])
+			if (!this[sorted_keys[i]]) {
+				throw new Error('Несуществующий ключ')
+			}
 			result.splice(ind, 1)
 			result.unshift({key: sorted_keys[i], value: this[sorted_keys[i]]})
 
