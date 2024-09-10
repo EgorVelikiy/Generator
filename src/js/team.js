@@ -5,7 +5,7 @@ export default class Team {
     constructor(teamName) {
         this.teamName = teamName;
         this.members = new Set();
-        this.start = -1
+        this.start = 0
     };
     
     add(char) {
@@ -26,23 +26,12 @@ export default class Team {
         return [...this.members];
     };
 
-    [Symbol.iterator]() {
-        return this
-    }
-
-    next() {
-        let end = this.toArray().length - 1;
+    *[Symbol.iterator]() {
+        const end = this.members.size;
         const arr = this.toArray();
-        if (this.start >= end) {
-          this.start = -1;
-          return {
-            value: 'Перебор окончен',
-            done: true,
-          };
+
+        for (let i = this.start; i < end; i++) {
+          yield arr[i];
         }
-        return {
-          value: arr[++this.start],
-          done: false,
-        };
     }
 }
