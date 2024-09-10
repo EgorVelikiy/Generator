@@ -1,7 +1,11 @@
+import Bowman from './bowman.js'
+import Magician from './magician.js'
+
 export default class Team {
     constructor(teamName) {
         this.teamName = teamName;
         this.members = new Set();
+        this.start = -1
     };
     
     add(char) {
@@ -21,4 +25,24 @@ export default class Team {
     toArray() {
         return [...this.members];
     };
+
+    [Symbol.iterator]() {
+        return this
+    }
+
+    next() {
+        let end = this.toArray().length - 1;
+        const arr = this.toArray();
+        if (this.start >= end) {
+          this.start = -1;
+          return {
+            value: 'Перебор окончен',
+            done: true,
+          };
+        }
+        return {
+          value: arr[++this.start],
+          done: false,
+        };
+    }
 }
